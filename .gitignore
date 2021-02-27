@@ -1,0 +1,12 @@
+*.lot
+*.lof
+*.log
+*.toc
+*.aux
+*.gz
+*.pdf
+*.bbl
+*.bcf
+*.xml
+*.blg
+/**/main-blx.bib
