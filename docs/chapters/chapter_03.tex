@@ -1,0 +1,72 @@
+\section{Data Preparation}
+Historical data of cryptocurrency; bitcoin, is downloaded from a website (kaggle.com) in csv format. Kaggle is an online community of data scientists and machine learning practitioners. It facilitates users to find and publish datasets, explore and build models in a web-based data-science environment. 
+
+The downloaded datasets has data from 29 April 2013 to 27 Feb 2021 with the following attributes: Date, High, Low, SNo, Name and symbol. The statistics of data collected is shown in \ref{table:1}
+
+\begin{table}[ht]
+	\captionsetup{justification=centering}
+	\caption{Description of datasets}
+	\centering
+	\begin{tabular}{ c  c  c  c  c  c  c  c  c }
+		\hline\hline
+		SNo & Name & Date &  High & Low & Open & Close \\ 
+		\hline
+		 1 & Bitcoin & 2013-04-29 23:59:59 &  147 &  134 & 134 & 144 \\
+		 2 & Bitcoin & 2013-04-30 23:59:59 &  146 &  134 & 144 & 139 \\
+		\hline
+	\end{tabular} 
+\label{table:1}
+\end{table}
+
+\section{Data Processing}
+The data has been loaded into python pandas dataframe from a csv file, which is a data processing module in python programming language. This study is considering only close price of Bitcoin, so unwanted columns are removed from the dataframe. Further, the attributes date has been converted to the format yyyy-mm-dd, as there will be only one closing price or prediction for each day. 
+
+\begin{table}[h]
+	\captionsetup{justification=centering}
+	\caption{Sample of processed datasets}
+	\centering
+	\begin{tabular}{ c  c  }
+		\hline\hline
+		Date &  Close \\ 
+		\hline
+		2013-04-29 & 144\\
+		2013-04-30 & 139 \\
+		2013-05-01 & 116 \\
+		2013-05-02 & 105 \\
+		2013-05-03 & 97 \\
+		\hline
+	\end{tabular} 
+	\label{table:1}
+\end{table}
+
+As the data seems to be sorted according to date, the dataframe's index has been set by date field and resorted to be assure.
+
+The min-max normalization technique is used to scale each feature to range [0, 1]. The min–max transformation is achieved by using Formula.
+
+\begin{center}
+$X_{norm} = (x - x_{min})/(x_{max}-x_{min})$
+\end{center}
+
+\section{Comparison Metrices}
+The performance comparison of LSTM and GRU model for daily price prediction of cryptocurrency can be measured through various metrics. The training time is used to analysis the performance of models regarding to how much resources it consumes while training the data. The parameters root mean square error (RMSE) and mean absolute Error are used to calculate the prediction error where coefficient of determination (R$62$) is used to measure goodness of fittings between actual and predicted values. Directional accuracy(DA) is used to measure the accuracy of prediction trend. Above metrices are formulated as:
+
+\begin{equation}
+		RMSE = \sqrt{\frac{1}{N}\sum_{d=1}^{N}(a_d - p_d)}
+\end{equation} 
+\begin{equation}
+	MAE = \frac{1}{N}\sum_{d=1}^{N}{|a_d - p_d|}
+\end{equation} 
+
+\begin{equation}
+	DA = \frac{1}{N}\sum_{d=1}^{N}{Dd}, 
+	Dd = \begin{cases*}
+		1, & ($a_{d+1}- a_d)* (p_{d+1}-a_d)$, \\
+		0, & otherwise., \\
+	\end{cases*}
+\end{equation}
+
+\begin{equation}
+	R^2 = 1 - \frac{\sum_{d=1}^{N}(a_d-p_d)^2}{\sum_{d=1}^{N}(a_d - \overline{a})^2}
+\end{equation}	
+
+where $\overline{a} = \frac{1}{N}\sum_{d=1}^{N} a_d$ and $a_d$ is actual price and $p_d$ is predicted price.

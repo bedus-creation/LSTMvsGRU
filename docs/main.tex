@@ -1,7 +1,7 @@
 \documentclass[12pt, a4paper]{report}
 \usepackage{times}
 \usepackage{graphicx}
-\graphicspath{{images/}}
+\graphicspath{{resources/}}
 \usepackage{amsmath}
 \usepackage{enumerate}
 \usepackage{algpseudocode}
@@ -9,9 +9,11 @@
 \usepackage{titlesec}
 \usepackage{titletoc}
 \usepackage{caption}
+\usepackage{subfigure}
 \usepackage[backend=bibtex,style=ieee, natbib=true, sorting=nyt]{biblatex}
+\usepackage{mathtools}
 \usepackage{url}
-\DeclareNameAlias{author}{last-first}
+\DeclareNameAlias{author}{family-given}
 \DeclareFieldFormat{urldate}{[Accessed: #1]}
 \DeclareFieldFormat{doi}{doi\addcolon\space\ifhyperref{\href{https://doi.org/#1}{\nolinkurl{#1}}}{\nolinkurl{#1}}}
 \DeclareFieldFormat[misc]{title}{\mkbibquote{#1}}
@@ -81,8 +83,20 @@ bottom=1.0in,%
 \pagenumbering{arabic}
 \setcounter{page}{1}
 	
-\chapter{Conclusion}
+\chapter{INTRODUCTION}
 \input{chapters/chapter_01}
+
+\chapter{LITERATURE REVIEW}
+\input{chapters/chapter_02}
+
+\chapter{METHODOLOGY}
+\input{chapters/chapter_03}
+
+\chapter{EXPERIMENT}
+\input{chapters/chapter_04}
+
+\chapter{CONCLUSION}
+\input{chapters/chapter_06}
 	
 \newpage
 \addcontentsline{toc}{section}{References}
